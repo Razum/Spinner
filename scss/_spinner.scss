@@ -1,0 +1,56 @@
+$spinnerwidth: 50px;
+$spinnerheight: 50px;
+$numofbars: 12;
+$barheight: 11px;
+$barwidth: 6px;
+$linemargin: -20px;
+$borderradius: 50%;
+
+@-webkit-keyframes fadeit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.spinner {
+  width: $spinnerwidth;
+  height: $spinnerheight;
+  position: relative;
+}
+
+.spinner div {
+  width: $barwidth;
+  height: $barheight;
+  background: black;
+  position: absolute;
+  opacity: 0.05;
+  border-radius: $borderradius;
+  -webkit-animation: fadeit #{$numofbars * 0.13}s linear infinite;
+  animation: fadeit #{$numofbars * 0.13}s linear infinite;
+  top: $spinnerheight/2 - $barheight/2;
+  left: $spinnerwidth/2 - $barwidth/2;
+}
+
+
+@for $i from 0 through $numofbars {
+
+  .spinner div:nth-child(#{$i}) {
+    -webkit-transform: rotate(#{360/$numofbars * $i}deg) translate(0, $linemargin);
+    transform: rotate(#{360/$numofbars * $i}deg) translate(0, $linemargin);
+
+    -webkit-animation-delay: #{0.13 * $i}s;
+    animation-delay: #{0.13 * $i}s;
+  }
+}
