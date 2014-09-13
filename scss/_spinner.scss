@@ -5,6 +5,7 @@ $barheight: 11px;
 $barwidth: 6px;
 $linemargin: -20px;
 $borderradius: 50%;
+$timeinterval: 0.13s;
 
 @-webkit-keyframes fadeit {
   0% {
@@ -37,8 +38,8 @@ $borderradius: 50%;
   position: absolute;
   opacity: 0.05;
   border-radius: $borderradius;
-  -webkit-animation: fadeit #{$numofbars * 0.13}s linear infinite;
-  animation: fadeit #{$numofbars * 0.13}s linear infinite;
+  -webkit-animation: fadeit $numofbars * $timeinterval linear infinite;
+  animation: fadeit $numofbars * $timeinterval linear infinite;
   top: $spinnerheight/2 - $barheight/2;
   left: $spinnerwidth/2 - $barwidth/2;
 }
@@ -50,7 +51,7 @@ $borderradius: 50%;
     -webkit-transform: rotate(#{360/$numofbars * $i}deg) translate(0, $linemargin);
     transform: rotate(#{360/$numofbars * $i}deg) translate(0, $linemargin);
 
-    -webkit-animation-delay: #{0.13 * $i}s;
-    animation-delay: #{0.13 * $i}s;
+    -webkit-animation-delay: $timeinterval * $i;
+    animation-delay: $timeinterval * $i;
   }
 }
